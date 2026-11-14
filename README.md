@@ -25,9 +25,22 @@ You lose when the debt can no longer be paid. Your best deadline is saved as the
 
 ## Features
 
-### Base requirements
+- Debt / deadline progression
+- ATM banking with interest that grows each deadline
+- Fixed-step deposit that scales per deadline and shrinks to the exact amount still owed
+- Early-payoff bonus for unused spins
+- Dynamic music that switches to a sinister track at each cursed deadline
+- Roulette wheel generated at runtime (37 pockets, dividers, wooden cone, brass turret) with a snap-to-pocket fix
+- How to Play screen (shown automatically on the first game)
+- Music and SFX volume sliders, saved between sessions
+- LED-style HUD and result display, casino-chip buttons, custom menu and game over art with traced hover glows
+- Stage spotlight with a visible light beam, custom pixel cursor, studio splash logo
 
-| Requirement | Implementation |
+---
+
+## Under the Hood
+
+| System | How it works |
 |---|---|
 | Core gameplay loop | Bet → spin → bank chips → pay the deadline, repeated with rising debt |
 | Main menu | Custom menu scene with Play and Quit |
@@ -40,19 +53,6 @@ You lose when the debt can no longer be paid. Your best deadline is saved as the
 | Post processing | Vignette tightens as spins run out, Bloom flash on wins, Chromatic Aberration on losses |
 | VFX | Shuriken coin burst on wins, dust particles in the stage light |
 | Singleton | `GameManager.Instance` |
-
-### Additional features
-
-- Debt / deadline progression
-- ATM banking with interest that grows each deadline
-- Fixed-step deposit that scales per deadline and shrinks to the exact amount still owed
-- Early-payoff bonus for unused spins
-- Dynamic music that switches to a sinister track at each cursed deadline
-- Roulette wheel generated at runtime (37 pockets, dividers, wooden cone, brass turret) with a snap-to-pocket fix
-- How to Play screen (shown automatically on the first game)
-- Music and SFX volume sliders, saved between sessions
-- LED-style HUD and result display, casino-chip buttons, custom menu and game over art with traced hover glows
-- Stage spotlight with a visible light beam, custom pixel cursor, studio splash logo
 
 ---
 
