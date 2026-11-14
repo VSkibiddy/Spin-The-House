@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     public bool showHelpOnFirstPlay = true;
 
     bool paused;
+    bool helpFromPause;   // true = opened from the pause menu, false = shown automatically on the first game
 
     void Start()
     {
@@ -23,8 +24,10 @@ public class PauseMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("SeenHelp", 1);
             PlayerPrefs.Save();
-            Pause();
-            ShowHelp();
+            paused = true;
+            Time.timeScale = 0f;          // freeze the game while reading, but don't show the pause menu
+            helpFromPause = false;
+            helpPanel.SetActive(true);
         }
     }
 
@@ -54,18 +57,22 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    // "How to Play" button in the pause menu
     public void ShowHelp()
     {
         if (!helpPanel) return;
+        helpFromPause = true;
         helpPanel.SetActive(true);
         pausePanel.SetActive(false);
     }
 
+    // Back button / Esc on the help screen
     public void HideHelp()
     {
         if (!helpPanel) return;
         helpPanel.SetActive(false);
-        pausePanel.SetActive(true);
+        if (helpFromPause) pausePanel.SetActive(true);   // came from the pause menu -> back to it
+        else Resume();                                    // first-game tutorial -> straight into the game
     }
 
     public void QuitToMenu() { Time.timeScale = 1f; SceneManager.LoadScene("MainMenu"); }
